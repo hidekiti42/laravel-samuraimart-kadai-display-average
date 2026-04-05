@@ -187,3 +187,7 @@ samuraimart-favorite-button {
     /* 文字は白に */
     border-radius: 2px;
 }
+
+th, td {
+    background-color: #f8fafc !important;
+}
