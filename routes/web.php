@@ -7,7 +7,10 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +50,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('users/carts', 'store')->name('carts.store');
         Route::delete('users/carts', 'destroy')->name('carts.destroy');
     });
+
+    Route::controller(CheckoutController::class)->group(function(){
+        Route::get('checkout', 'index')->name('checkout.index');
+        Route::post('checkout', 'store')->name('checkout.store');
+        Route::get('checkout/success', 'success')->name('checkout.success');
+    });
 });
+
+    Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index');
