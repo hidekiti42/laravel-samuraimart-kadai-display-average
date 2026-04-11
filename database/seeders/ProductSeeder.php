@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             'price' => 2500,
             'category_id' => 1, // ビジネスのID
             // 画像はあらかじめ public/img に置いておく必要があります
-            'image' => 'img/book.jpg',
+            'image' => 'book01.jpg',
             'recommend_flag' => true, // おすすめにする
         ]);
 

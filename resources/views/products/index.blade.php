@@ -8,7 +8,6 @@
             @endcomponent
         </div>
         <div class="col">
-            {{-- パンくずリストとタイトル部分は変更なし --}}
             @if ($category !== null)
                 <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -61,7 +60,7 @@
                     <div class="col-md-3 mb-3">
                         <a href="{{ route('products.show', $product) }}">
                             @if ($product->image !== "")
-                                {{-- 修正点：asset('img/' . basename(...)) に変更 --}}
+                                {{-- 修正点：asset() の中に直接パスを入れる形に統一 --}}
                                 <img src="{{ asset($product->image) }}" class="img-thumbnail samuraimart-product-img-products">
                             @else
                                 <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
