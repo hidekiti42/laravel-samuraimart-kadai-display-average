@@ -19,3 +19,4 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+config(['admin.assets_base_url' => 'http://localhost:8888/laravel-samuraimart/public/vendor/laravel-admin/']);
