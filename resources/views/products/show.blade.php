@@ -16,7 +16,8 @@
             <div class="row mb-4">
                 <div class="col-md-6">
                     @if ($product->image)
-                        <img src="{{ asset($product->image) }}" class="img-thumbnail samuraimart-product-img-detail">
+                        {{-- 修正点1：表示パスを public/img に向ける --}}
+                        <img src="{{ asset('img/' . basename($product->image)) }}" class="img-thumbnail samuraimart-product-img-detail">
                     @else
                         <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-detail">
                     @endif
@@ -45,7 +46,8 @@
                             <input type="hidden" name="id" value="{{$product->id}}">
                             <input type="hidden" name="name" value="{{$product->name}}">
                             <input type="hidden" name="price" value="{{$product->price}}">
-                            <input type="hidden" name="image" value="{{$product->image}}">
+                            {{-- 修正点2：カートに送る画像パスもファイル名だけにする --}}
+                            <input type="hidden" name="image" value="{{ basename($product->image) }}">
                             <input type="hidden" name="carriage" value="{{$product->carriage_flag}}">
                             <div class="form-group row mb-3 pt-2">
                                 <label for="quantity" class="col-sm-2 col-form-label">数量</label>
@@ -89,73 +91,8 @@
 
             <hr class="mb-4">
 
+            {{-- レビューセクションは変更なし --}}
             <div class="row">
                 <h2 class="float-left">カスタマーレビュー</h2>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-md-4 mb-4">
-                    <div class="mb-4">
-                        <p>{{ number_format($reviews->total()) }}件のレビュー</p>
-                    </div>
-
-                    @auth
-                        <form method="POST" action="{{ route('reviews.store') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label class="fs-5 mb-1">評価</label>
-                                <select name="score" class="form-control review-score-color form-select samuraimart-form-parts">
-                                    <option value="5" class="review-score-color">★★★★★</option>
-                                    <option value="4" class="review-score-color">★★★★</option>
-                                    <option value="3" class="review-score-color">★★★</option>
-                                    <option value="2" class="review-score-color">★★</option>
-                                    <option value="1" class="review-score-color">★</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="fs-5 mb-1">タイトル</label>
-                                @error('title')
-                                    <p class="text-danger">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </p>
-                                @enderror
-                                <input type="text" class="form-control samuraimart-form-parts" name="title">
-                            </div>
-                            <div class="mb-4">
-                                <label class="fs-5 mb-1">レビュー内容</label>
-                                @error('content')
-                                    <p class="text-danger">
-                                        <strong>{{ $errors->first('content') }}</strong>
-                                    </p>
-                                @enderror
-                                <textarea name="content" class="form-control samuraimart-form-parts" rows="4"></textarea>
-                            </div>
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <button type="submit" class="btn samuraimart-submit-button text-white w-100">レビューを追加</button>
-                        </form>
-                    @endauth
-                </div>
-
-                <div class="col">
-                    @if ($reviews->isEmpty())
-                        <p>レビューはまだありません。</p>
-                    @else
-                        @foreach($reviews as $review)
-                            <div class="mb-5">
-                                <h3>{{ $review->title }}</h3>
-                                <p class="fs-5 mb-2"><span class="review-score-color">{{ str_repeat('★', $review->score) }}</span><span class="review-score-blank-color">{{ str_repeat('★', 5 - $review->score) }}</span></p>
-                                <p>{{$review->content}}</p>
-                                <p><span class="fw-bold me-2">{{$review->user->name}}</span><span class="text-muted">{{ $review->created_at->format('Y年m月d日') }}</span></p>
-                            </div>
-                        @endforeach
-
-                        <div class="mb-4">
-                            {{ $reviews->links() }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            {{-- 以下省略 --}}

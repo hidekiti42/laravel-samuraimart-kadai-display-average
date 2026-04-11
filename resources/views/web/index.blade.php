@@ -25,7 +25,8 @@
                         <div class="col-md-4">
                             <a href="{{ route('products.show', $recommend_product) }}">
                                 @if ($recommend_product->image !== "")
-                                    <img src="{{ asset($recommend_product->image) }}" class="img-thumbnail samuraimart-product-img-recommend">
+                                    {{-- 修正点1：おすすめ商品 --}}
+                                    <img src="{{ asset('img/' . basename($recommend_product->image)) }}" class="img-thumbnail samuraimart-product-img-recommend">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-recommend">
                                 @endif
@@ -51,7 +52,8 @@
                         <div class="col-md-3">
                             <a href="{{ route('products.show', $recently_product) }}">
                                 @if ($recently_product->image !== "")
-                                    <img src="{{ asset($recently_product->image) }}" class="img-thumbnail samuraimart-product-img-products">
+                                    {{-- 修正点2：新着商品 --}}
+                                    <img src="{{ asset('img/' . basename($recently_product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
                                 @endif
@@ -77,7 +79,8 @@
                         <div class="col-md-3">
                             <a href="{{ route('products.show', $featured_product) }}">
                                 @if ($featured_product->image !== "")
-                                    <img src="{{ asset($featured_product->image) }}" class="img-thumbnail samuraimart-product-img-products">
+                                    {{-- 修正点3：注目商品 --}}
+                                    <img src="{{ asset('img/' . basename($featured_product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
                                 @endif

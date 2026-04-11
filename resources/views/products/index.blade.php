@@ -8,6 +8,7 @@
             @endcomponent
         </div>
         <div class="col">
+            {{-- パンくずリストとタイトル部分は変更なし --}}
             @if ($category !== null)
                 <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -33,6 +34,7 @@
                 </nav>
                 <h1>商品一覧<span class="ms-3">{{ number_format($total_count) }}件</span></h1>
             @endif
+
             <div class="d-flex align-items-center mb-4">
                 <span class="small me-2">並べ替え</span>
                 <form method="GET" action="{{ route('products.index') }}">
@@ -53,12 +55,14 @@
                     </select>
                 </form>
             </div>
+
             <div class="row">
                 @foreach($products as $product)
                     <div class="col-md-3 mb-3">
                         <a href="{{ route('products.show', $product) }}">
                             @if ($product->image !== "")
-                                <img src="{{ asset($product->image) }}" class="img-thumbnail samuraimart-product-img-products">
+                                {{-- 修正点：asset('img/' . basename(...)) に変更 --}}
+                                <img src="{{ asset('img/' . basename($product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
                             @else
                                 <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
                             @endif

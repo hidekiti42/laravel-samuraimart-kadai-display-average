@@ -30,7 +30,8 @@
                         <div class="col-md-2">
                             <a href="{{ route('products.show', $product->id) }}">
                                 @if ($product->options->image)
-                                    <img src="{{ asset($product->options->image) }}" class="img-thumbnail samuraimart-product-img-cart">
+                                    {{-- 修正点：asset('img/' . basename(...)) に変更 --}}
+                                    <img src="{{ asset('img/' . basename($product->options->image)) }}" class="img-thumbnail samuraimart-product-img-cart">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-cart">
                                 @endif
