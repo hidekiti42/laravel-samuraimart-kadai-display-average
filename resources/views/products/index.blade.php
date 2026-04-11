@@ -62,7 +62,7 @@
                         <a href="{{ route('products.show', $product) }}">
                             @if ($product->image !== "")
                                 {{-- 修正点：asset('img/' . basename(...)) に変更 --}}
-                                <img src="{{ asset('img/' . basename($product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
+                                <img src="{{ asset($product->image) }}" class="img-thumbnail samuraimart-product-img-products">
                             @else
                                 <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
                             @endif
