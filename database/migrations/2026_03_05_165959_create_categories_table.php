@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('major_category_id');
+            $table->integer('major_category_id')->unsigned();
             $table->timestamps();
         });
     }
