@@ -27,8 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        if (App::environment(['production'])) {
+
+        // Heroku（本番環境）でのHTTPS強制
+        if (App::environment('production')) {
             URL::forceScheme('https');
         }
     }
-}
+} // ← ここでクラスを閉じます（余分な } を削除しました）
