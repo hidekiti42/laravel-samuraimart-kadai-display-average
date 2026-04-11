@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('recommended_flag')->default(false);
+            $table->boolean('recommend_flag')->default(false);
         });
     }
 

@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
             'category_id' => 1, // ビジネスのID
             // 画像はあらかじめ public/img に置いておく必要があります
             'image' => 'img/book.jpg',
-            'recommended_flag' => true, // おすすめにする
+            'recommend_flag' => true, // おすすめにする
         ]);
 
         // 同様に2つ目、3つ目を Product::create([...]) で追加する
