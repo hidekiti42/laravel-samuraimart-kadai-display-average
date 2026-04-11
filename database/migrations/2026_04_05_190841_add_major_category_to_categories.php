@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             if (!Schema::hasColumn('categories', 'major_category_id')) {
-            $table->integer('major_category_id')->default(0);
+            $table->integer('major_category_id')unsigned()->nullable();
         }
     });
     }
