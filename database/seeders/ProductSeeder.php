@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 
@@ -15,10 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-        // 他のSeeder...
-        ProductSeeder::class, // ← これが入っている必要があります
-        // ProductFactoryクラスで定義した内容にもとづいてダミーデータを20件生成し、productsテーブルに追加する
+        // ProductFactoryにもとづいてダミーデータを20件生成する
         Product::factory()->count(20)->create();
     }
 }
