@@ -15,6 +15,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+        // 他のSeeder...
+        ProductSeeder::class, // ← これが入っている必要があります
         // ProductFactoryクラスで定義した内容にもとづいてダミーデータを20件生成し、productsテーブルに追加する
         Product::factory()->count(20)->create();
     }

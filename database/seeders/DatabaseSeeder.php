@@ -15,17 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 管理画面の初期データを呼び出す
-    $this->call(\Encore\Admin\Auth\Database\AdminTablesSeeder::class);
+        $this->call(\Encore\Admin\Auth\Database\AdminTablesSeeder::class);
 
-    // 自分で作った他のSeederもここに追加しておくと楽です
-    $this->call(MajorCategoriesTableSeeder::class);
-    $this->call(CategoriesTableSeeder::class);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
+        // ★ここを修正：$this->call([ ]) の形式でまとめて呼び出すか、一つずつ$this->callしてください
+        $this->call([
+            MajorCategoriesTableSeeder::class,
+            CategoriesTableSeeder::class,
+            ProductSeeder::class, // これで正しく呼び出されます
+        ]);
     }
 }
