@@ -26,6 +26,7 @@
                 Sort By
                 @sortablelink('id', 'ID')
                 @sortablelink('price', 'price')
+                @sortablelink('created_at', 'created_at')
             </div>
 
             <div class="row w-100">

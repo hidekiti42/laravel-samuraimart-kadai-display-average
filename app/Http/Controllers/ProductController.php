@@ -17,6 +17,10 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
+        $sort = $request->input('sort');
+        $category_id = $request->category;
+
+        $query = Product::query();
 
         if ($request->category !== null) {
             $products = Product::where('category_id', $request->category)->sortable()->paginate(15);
@@ -34,6 +38,25 @@ class ProductController extends Controller
             $category = null;
             $major_category = null;
         }
+
+        if ($keyword !== null) {
+        $query->where('name', 'like', "%{$keyword}%");
+    }
+
+        if ($sort === 'latest') {
+        $query->orderBy('created_at', 'desc');
+    } elseif ($sort === 'oldest') {
+        $query->orderBy('created_at', 'asc');
+    } else {
+
+        $query->orderBy('created_at', 'desc');
+    }
+
+        // ページネーション
+        $products = $query->paginate(15);
+
+        // 件数取得
+        $total_count = $products->total();
         $categories = Category::all();
         $major_categories = MajorCategory::all();
 
