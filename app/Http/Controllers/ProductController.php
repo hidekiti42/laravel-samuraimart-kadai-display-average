@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         if($request->has('select_sort')) {
             $slice = explode(' ', $request->input('select_sort'));
-            $sort_query[$slices[0]] = $slices[1];
+            $sort_query[$slice[0]] = $slice[1];
             $sorted = $request->input('select_sort');
         }
 

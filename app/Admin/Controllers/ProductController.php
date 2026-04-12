@@ -95,7 +95,7 @@ class ProductController extends AdminController
         $form->text('name', __('Name'));
         $form->textarea('description', __('Description'));
         $form->number('price', __('Price'));
-        $form->number('category_id', __('Category Name'))->options(Category::all()->pluck('name', 'id'));
+        $form->select('category_id', __('Category Name'))->options(Category::all()->pluck('name', 'id'));
         $form->image('image', __('Image'));
         $form->switch('recommend_flag', __('Recommend Flag'));
         $form->switch('carriage_flag', __('Carriage Flag'));

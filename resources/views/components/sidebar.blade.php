@@ -1,12 +1,14 @@
-<div>
+<div class="container">
     @foreach ($major_categories as $major_category)
         <div class="mb-4">
-            <h2>{{ $major_category->name }}</h2>
-            {{-- $categories ではなく、親(major_category)に紐づく categories を使う --}}
+            {{-- 親カテゴリー名を1回だけ表示 --}}
+            <h2 class="h4 fw-bold">{{ $major_category->name }}</h2>
+
+            {{-- その親に紐づく子カテゴリーだけをループ --}}
             @foreach ($major_category->categories as $category)
-                <div class="mb-3">
+                <div class="mb-2">
                     <label class="samuraimart-sidebar-category-label">
-                        <a href="{{ route('products.index', ['category' => $category->id]) }}" class="h6 link-dark text-decoration-none">
+                        <a href="{{ route('products.index', ['category' => $category->id]) }}" class="link-dark text-decoration-none">
                             {{ $category->name }}
                         </a>
                     </label>
