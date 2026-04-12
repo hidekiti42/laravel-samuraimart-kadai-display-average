@@ -104,25 +104,30 @@
                 </div>
 
                 {{-- 右側：レビュー一覧 --}}
-                <div class="col-md-7">
-                    @foreach($reviews as $review)
-                        <div class="mb-4">
-                            <h3 class="review-score-color">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    {{ $i <= $review->score ? '★' : '☆' }}
-                                @endfor
-                            </h3>
-                            <p class="h4 fw-bold pt-2">{{ $review->title }}</p>
-                            <p class="h4 pt-2">{{ $review->content }}</p>
-                            <label class="text-muted">{{ $review->created_at->format('Y/m/d') }} {{ $review->user->name }}様</label>
-                        </div>
-                    @endforeach
+<div class="col-md-7">
+    @foreach($reviews as $review)
+        <div class="mb-4">
+            <h3 class="review-score-color">
+                @for ($i = 1; $i <= 5; $i++)
+                    {{ $i <= $review->score ? '★' : '☆' }}
+                @endfor
+            </h3>
+            <p class="h4 fw-bold pt-2">{{ $review->title }}</p>
+            <p class="h4 pt-2">{{ $review->content }}</p>
 
-                    {{-- ページネーション --}}
-                    <div class="mt-4">
-                        {{ $reviews->links() }}
-                    </div>
-                </div>
+            {{-- ★ここを修正：$review->user が null でもエラーにならないようにします --}}
+            <label class="text-muted">
+                {{ $review->created_at->format('Y/m/d') }}
+                {{ $review->user->name ?? '退会済みユーザー' }}様
+            </label>
+        </div>
+    @endforeach
+
+    {{-- ページネーション --}}
+    <div class="mt-4">
+        {{ $reviews->links() }}
+    </div>
+</div>
             </div>
 
         </div> {{-- col-md-10 終了 --}}
