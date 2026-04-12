@@ -2,13 +2,12 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class ProductSeeder extends Seeder
 {
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('products')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('TRUNCATE TABLE products CASCADE;');
         DB::table('products')->insert([
             ['name'=>'リーダーシップの探究','description'=>'現代のリーダーシップに必要なスキルと戦略を紹介する本。','price'=>2500,'category_id'=>1,'image'=>'img/book01.jpg','recommend_flag'=>1,'carriage_flag'=>0,'created_at'=>'2023-01-01 00:00:00','updated_at'=>'2023-01-01 00:00:00'],
             ['name'=>'マーケティング革命','description'=>'デジタル時代のマーケティング戦略とトレンドに焦点を当てる。','price'=>3000,'category_id'=>1,'image'=>'img/book02.jpg','recommend_flag'=>0,'carriage_flag'=>0,'created_at'=>'2023-01-02 00:00:00','updated_at'=>'2023-01-02 00:00:00'],
