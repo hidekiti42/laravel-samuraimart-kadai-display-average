@@ -10,6 +10,8 @@ class Product extends Model
 {
     use HasFactory, Sortable;
 
+    protected $table = 'products';
+
     protected $fillable = [
         'name',
         'description',
