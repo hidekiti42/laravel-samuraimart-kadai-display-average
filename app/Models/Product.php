@@ -18,6 +18,8 @@ class Product extends Model
         'description',
         'price',
         'category_id',
+        'created_at',
+        'updated_at',
         'image',
         'recommend_flag',
         'carriage_flag',
