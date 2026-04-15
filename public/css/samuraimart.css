@@ -387,3 +387,92 @@ a img:hover {
 .samuraimart-mypage-link:hover {
   background-color: #f8f9fa;
 }
+
+/* 星評価のコンテナ */
+.samuraimart-star-rating-container {
+    display: flex;
+    align-items: center;
+    /* 星と数値を中央で揃える */
+    gap: 8px;
+    /* 星と数値の間の余白 */
+    font-weight: bold;
+    color: #5cb85c;
+    /* 見本の数値の色（緑系） */
+}
+
+/* 星のベース設定 */
+.samuraimart-star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 1.25rem;
+    color: #e9ecef;
+    /* 背面のグレー星 */
+}
+
+.samuraimart-star-rating::before,
+.samuraimart-star-rating::after {
+    content: "★★★★★";
+    white-space: nowrap;
+}
+
+.samuraimart-star-rating::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #32b78f;
+    /* 前面の緑色の星 */
+    overflow: hidden;
+    width: 0;
+    /* ↓ テスト用の背景色は削除してください ↓ */
+}
+
+/* 整数と小数の両方に対応させる */
+.samuraimart-star-rating[data-rate="0"]::after,
+.samuraimart-star-rating[data-rate="0.0"]::after {
+    width: 0%;
+}
+
+.samuraimart-star-rating[data-rate="0.5"]::after {
+    width: 10%;
+}
+
+.samuraimart-star-rating[data-rate="1"]::after,
+.samuraimart-star-rating[data-rate="1.0"]::after {
+    width: 20%;
+}
+
+.samuraimart-star-rating[data-rate="1.5"]::after {
+    width: 30%;
+}
+
+.samuraimart-star-rating[data-rate="2"]::after,
+.samuraimart-star-rating[data-rate="2.0"]::after {
+    width: 40%;
+}
+
+.samuraimart-star-rating[data-rate="2.5"]::after {
+    width: 50%;
+}
+
+.samuraimart-star-rating[data-rate="3"]::after,
+.samuraimart-star-rating[data-rate="3.0"]::after {
+    width: 60%;
+}
+
+.samuraimart-star-rating[data-rate="3.5"]::after {
+    width: 70%;
+}
+
+.samuraimart-star-rating[data-rate="4"]::after,
+.samuraimart-star-rating[data-rate="4.0"]::after {
+    width: 80%;
+}
+
+.samuraimart-star-rating[data-rate="4.5"]::after {
+    width: 90%;
+}
+
+.samuraimart-star-rating[data-rate="5"]::after,
+.samuraimart-star-rating[data-rate="5.0"]::after {
+    width: 100%;
+}

@@ -69,10 +69,16 @@
                         <div class="row">
                             <div class="col-12">
                                 <p class="samuraimart-product-label mt-2">
-                                    <a href="{{ route('products.show', $product) }}" class="link-dark">{{$product->name}}</a>
-                                    <br>
-                                    <label>￥{{ number_format($product->price) }}</label>
-                                </p>
+                                    {{-- 1. 商品名（リンク） --}}
+    <a href="{{ route('products.show', $product) }}" class="link-dark">
+        {{ $product->name }}
+    </a><br>
+
+    {{-- 2. 星評価コンポーネント --}}
+    <x-star-rating :product="$product" />
+
+    {{-- 3. 価格 --}}
+    <label>￥{{ number_format($product->price) }}</label>
                             </div>
                         </div>
                     </div>

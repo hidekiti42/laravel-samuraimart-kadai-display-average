@@ -18,6 +18,7 @@
             @endcomponent
         </div>
         <div class="col">
+            {{-- 1. おすすめ商品 --}}
             <div class="mb-4">
                 <h2>おすすめ商品</h2>
                 <div class="row">
@@ -25,7 +26,6 @@
                         <div class="col-md-4">
                             <a href="{{ route('products.show', $recommend_product) }}">
                                 @if ($recommend_product->image !== "")
-                                    {{-- 修正点1：おすすめ商品 --}}
                                     <img src="{{ asset('img/' . basename($recommend_product->image)) }}" class="img-thumbnail samuraimart-product-img-recommend">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-recommend">
@@ -34,8 +34,9 @@
                             <div class="row">
                                 <div class="col-12">
                                     <p class="samuraimart-product-label mt-2">
-                                        <a href="{{ route('products.show', $recommend_product) }}" class="link-dark">{{ $recommend_product->name }}</a>
-                                        <br>
+                                        <a href="{{ route('products.show', $recommend_product) }}" class="link-dark">{{ $recommend_product->name }}</a><br>
+                                        {{-- 星評価コンポーネント（おすすめ商品用） --}}
+                                        <x-star-rating :product="$recommend_product" />
                                         <label>￥{{ number_format($recommend_product->price) }}</label>
                                     </p>
                                 </div>
@@ -45,6 +46,7 @@
                 </div>
             </div>
 
+            {{-- 2. 新着商品 --}}
             <div class="mb-4">
                 <h2>新着商品</h2>
                 <div class="row">
@@ -52,7 +54,6 @@
                         <div class="col-md-3">
                             <a href="{{ route('products.show', $recently_product) }}">
                                 @if ($recently_product->image !== "")
-                                    {{-- 修正点2：新着商品 --}}
                                     <img src="{{ asset('img/' . basename($recently_product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
@@ -61,8 +62,9 @@
                             <div class="row">
                                 <div class="col-12">
                                     <p class="samuraimart-product-label mt-2">
-                                        <a href="{{ route('products.show', $recently_product) }}" class="link-dark">{{ $recently_product->name }}</a>
-                                        <br>
+                                        <a href="{{ route('products.show', $recently_product) }}" class="link-dark">{{ $recently_product->name }}</a><br>
+                                        {{-- 星評価コンポーネント（新着商品用） --}}
+                                        <x-star-rating :product="$recently_product" />
                                         <label>￥{{ number_format($recently_product->price) }}</label>
                                     </p>
                                 </div>
@@ -72,6 +74,7 @@
                 </div>
             </div>
 
+            {{-- 3. 注目商品 --}}
             <div class="mb-4">
                 <h2>注目商品</h2>
                 <div class="row">
@@ -79,7 +82,6 @@
                         <div class="col-md-3">
                             <a href="{{ route('products.show', $featured_product) }}">
                                 @if ($featured_product->image !== "")
-                                    {{-- 修正点3：注目商品 --}}
                                     <img src="{{ asset('img/' . basename($featured_product->image)) }}" class="img-thumbnail samuraimart-product-img-products">
                                 @else
                                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail samuraimart-product-img-products">
@@ -88,8 +90,9 @@
                             <div class="row">
                                 <div class="col-12">
                                     <p class="samuraimart-product-label mt-2">
-                                        <a href="{{ route('products.show', $featured_product) }}" class="link-dark">{{ $featured_product->name }}</a>
-                                        <br>
+                                        <a href="{{ route('products.show', $featured_product) }}" class="link-dark">{{ $featured_product->name }}</a><br>
+                                        {{-- 星評価コンポーネント（注目商品用） --}}
+                                        <x-star-rating :product="$featured_product" />
                                         <label>￥{{ number_format($featured_product->price) }}</label>
                                     </p>
                                 </div>

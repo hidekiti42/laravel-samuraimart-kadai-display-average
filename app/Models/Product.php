@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Sortable, SoftDeletes;
+    use HasFactory, Sortable;
 
     protected $table = 'products';
 
@@ -36,4 +36,16 @@ class Product extends Model
     public function favorited_users() {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function getAverageRatingAttribute()
+{
+    // レビューが存在しない場合は0を返す
+    return $this->reviews()->avg('score') ?? 0;
+}
+
+public function getRoundedAverageRatingAttribute()
+{
+    // 0.5刻みに丸める
+    return round($this->average_rating * 2) / 2;
+}
 }

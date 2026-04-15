@@ -24,6 +24,7 @@
                 </div>
                 <div class="col">
                     <h1>{{$product->name}}</h1>
+                    <x-star-rating :product="$product" />
                     <p>{{$product->description}}</p>
                     <hr class="my-4">
                     <div class="d-flex align-items-baseline">
@@ -78,6 +79,7 @@
                 {{-- 左側：見出しと投稿フォーム --}}
                 <div class="col-md-5">
                     <h2 class="mb-3">カスタマーレビュー</h2>
+                    <x-star-rating :product="$product" />
                     <p class="h4 fw-bold">{{ $reviews->total() }}件のレビュー</p>
 
                     @auth
@@ -106,22 +108,32 @@
                 {{-- 右側：レビュー一覧 --}}
 <div class="col-md-7">
     @foreach($reviews as $review)
-        <div class="mb-4">
-            <h3 class="review-score-color">
-                @for ($i = 1; $i <= 5; $i++)
-                    {{ $i <= $review->score ? '★' : '☆' }}
-                @endfor
-            </h3>
-            <p class="h4 fw-bold pt-2">{{ $review->title }}</p>
-            <p class="h4 pt-2">{{ $review->content }}</p>
+        <div class="mb-3">
+            {{-- 1. タイトル --}}
+            <p class="h3 fw-bold">{{ $review->title }}</p>
 
-            {{-- ★ここを修正：$review->user が null でもエラーにならないようにします --}}
+            {{-- 2. 本文 --}}
+            <p class="h4">{{ $review->content }}</p>
+
+            {{-- 3. 投稿日時と氏名 --}}
             <label class="text-muted">
-                {{ $review->created_at->format('Y/m/d') }}
-                {{ $review->user->name ?? '退会済みユーザー' }}様
+                {{ $review->created_at->format('Y/m/d') }} {{ $review->user->name }}様
             </label>
+            <br>
+
+            {{-- 4. 個別レビューの星評価（ここに配置！） --}}
+            <p class="review-score-color">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $review->score)
+                        ★
+                    @else
+                        ☆
+                    @endif
+                @endfor
+            </p>
         </div>
     @endforeach
+</div>
 
     {{-- ページネーション --}}
     <div class="mt-4">
